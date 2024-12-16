@@ -1,0 +1,35 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete</title>
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+</head>
+<body>
+    <h3 style="text-align: center; margin-top: 50px;">Are you sure you want to delete this product?</h3>
+    <div class="d-flex justify-content-center">
+    <div style="width: 250px;" class="card product-item border-0 mb-4">
+        <div class="card-footer d-flex justify-content-between bg-light border">
+            <a href="{% url 'cancelled_deletion' user_uid=user_uid username=username %}" class="btn btn-sm text-dark p-0">Cancel</a>
+            <a href="{% url 'prod_deleted' user_uid=user_uid username=username apt_Id=apt_Id%}" class="btn btn-sm text-dark p-0">Yes</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

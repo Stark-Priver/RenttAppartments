@@ -1,0 +1,760 @@
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rent Appartment</title>
+
+  <!-- Boxicons CDN Link -->
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+    }
+
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      width: 90%;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .scroll-item {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 10px;
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      line-height: 100px;
+      font-size: 1.2em;
+    }
+
+    /* Optional: Add a scroll bar style */
+    .scroll-container::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+      background-color: #007bff;
+      border-radius: 5px;
+    }
+
+    .scroll-container::-webkit-scrollbar-track {
+      background-color: #f4f4f4;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      height: 70px;
+      background: #3e8da8;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      z-index: 99;
+    }
+
+    nav .navbar {
+      height: 100%;
+      max-width: 1250px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: auto;
+      /* background: red; */
+      padding: 0 50px;
+    }
+
+    .navbar .logo a {
+      font-size: 30px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav .navbar .nav-links {
+      line-height: 70px;
+      height: 100%;
+    }
+
+    nav .navbar .links {
+      display: flex;
+    }
+
+    nav .navbar .links li {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      padding: 0 14px;
+    }
+
+    nav .navbar .links li a {
+      height: 100%;
+      text-decoration: none;
+      white-space: nowrap;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .links li:hover .htmlcss-arrow,
+    .links li:hover .js-arrow {
+      transform: rotate(180deg);
+    }
+
+    nav .navbar .links li .arrow {
+      /* background: red; */
+      height: 100%;
+      width: 22px;
+      line-height: 70px;
+      text-align: center;
+      display: inline-block;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    nav .navbar .links li .sub-menu {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      line-height: 40px;
+      background: #3e8da8;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      border-radius: 0 0 4px 4px;
+      display: none;
+      z-index: 2;
+    }
+
+    nav .navbar .links li:hover .htmlCss-sub-menu,
+    nav .navbar .links li:hover .js-sub-menu {
+      display: block;
+    }
+
+    .navbar .links li .sub-menu li {
+      padding: 0 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar .links li .sub-menu a {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .navbar .links li .sub-menu .more-arrow {
+      line-height: 40px;
+    }
+
+    .navbar .links li .htmlCss-more-sub-menu {
+      /* line-height: 40px; */
+    }
+
+    .navbar .links li .sub-menu .more-sub-menu {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      border-radius: 0 4px 4px 4px;
+      z-index: 1;
+      display: none;
+    }
+
+    .links li .sub-menu .more:hover .more-sub-menu {
+      display: block;
+    }
+
+    .navbar .search-box {
+      position: relative;
+      height: 40px;
+      width: 40px;
+    }
+
+    .navbar .search-box i {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      line-height: 40px;
+      text-align: center;
+      font-size: 22px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .navbar .search-box .input-box {
+      position: absolute;
+      right: calc(100% - 40px);
+      top: 80px;
+      height: 60px;
+      width: 300px;
+      background: #3e8da8;
+      border-radius: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s ease;
+    }
+
+    .navbar.showInput .search-box .input-box {
+      top: 65px;
+      opacity: 1;
+      pointer-events: auto;
+      background: #3e8da8;
+    }
+
+    .search-box .input-box::before {
+      content: "";
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      background: #3e8da8;
+      right: 10px;
+      top: -6px;
+      transform: rotate(45deg);
+    }
+
+    .search-box .input-box input {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 4px;
+      transform: translate(-50%, -50%);
+      height: 35px;
+      width: 280px;
+      outline: none;
+      padding: 0 15px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .navbar .nav-links .sidebar-logo {
+      display: none;
+    }
+
+    .navbar .bx-menu {
+      display: none;
+    }
+
+    @media (max-width: 920px) {
+      nav .navbar {
+        max-width: 100%;
+        padding: 0 25px;
+      }
+
+      nav .navbar .logo a {
+        font-size: 27px;
+      }
+
+      nav .navbar .links li {
+        padding: 0 10px;
+        white-space: nowrap;
+      }
+
+      nav .navbar .links li a {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        /* position: relative; */
+      }
+
+      .navbar .bx-menu {
+        display: block;
+      }
+
+      nav .navbar .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        display: block;
+        max-width: 270px;
+        width: 100%;
+        background: #3e8da8;
+        line-height: 40px;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s ease;
+        z-index: 1000;
+      }
+
+      .navbar .nav-links .sidebar-logo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .sidebar-logo .logo-name {
+        font-size: 25px;
+        color: #fff;
+      }
+
+      .sidebar-logo i,
+      .navbar .bx-menu {
+        font-size: 25px;
+        color: #fff;
+      }
+
+      nav .navbar .links {
+        display: block;
+        margin-top: 20px;
+      }
+
+      nav .navbar .links li .arrow {
+        line-height: 40px;
+      }
+
+      nav .navbar .links li {
+        display: block;
+      }
+
+      nav .navbar .links li .sub-menu {
+        position: relative;
+        top: 0;
+        box-shadow: none;
+        display: none;
+      }
+
+      nav .navbar .links li .sub-menu li {
+        border-bottom: none;
+      }
+
+      .navbar .links li .sub-menu .more-sub-menu {
+        display: none;
+        position: relative;
+        left: 0;
+      }
+
+      .navbar .links li .sub-menu .more-sub-menu li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .links li:hover .htmlcss-arrow,
+      .links li:hover .js-arrow {
+        transform: rotate(0deg);
+      }
+
+      .navbar .links li .sub-menu .more-sub-menu {
+        display: none;
+      }
+
+      .navbar .links li .sub-menu .more span {
+        /* background: red; */
+        display: flex;
+        align-items: center;
+        /* justify-content: space-between; */
+      }
+
+      .links li .sub-menu .more:hover .more-sub-menu {
+        display: none;
+      }
+
+      nav .navbar .links li:hover .htmlCss-sub-menu,
+      nav .navbar .links li:hover .js-sub-menu {
+        display: none;
+      }
+
+      .navbar .nav-links.show1 .links .htmlCss-sub-menu,
+      .navbar .nav-links.show3 .links .js-sub-menu,
+      .navbar .nav-links.show2 .links .more .more-sub-menu {
+        display: block;
+      }
+
+      .navbar .nav-links.show1 .links .htmlcss-arrow,
+      .navbar .nav-links.show3 .links .js-arrow {
+        transform: rotate(180deg);
+      }
+
+      .navbar .nav-links.show2 .links .more-arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    @media (max-width: 370px) {
+      nav .navbar .nav-links {
+        max-width: 100%;
+      }
+    }
+
+    .scroll-container img {
+      width: 100%; /* Makes the image responsive */
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    
+    /* Mobile view */
+    @media (max-width: 600px) {
+      .scroll-container img {
+        width: 100%; /* Full width for mobile */
+        max-height: 300px; /* Set a max height to maintain proportions */
+        object-fit: contain; /* Ensures the entire image is shown */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="navbar">
+      <i class="bx bx-menu"></i>
+      <div class="logo">
+        <a style="font-size: 20px" href="#">Rent Appartment</a>
+      </div>
+      <div class="nav-links">
+        <div class="sidebar-logo">
+          <span style="font-size: 20px" class="logo-name">Rent Appartment</span>
+          <i class="bx bx-x"></i>
+        </div>
+        <ul class="links">
+          <li><a href="#">All Listing</a></li>
+          <li><a href="#">Favorite</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">My Account</a></li>
+          <li>
+            <button style="
+                  justify-content: center;
+                  align-items: center;
+                  background-color: greenyellow;
+                  border: none;
+                  width: 80px;
+                  height: 50px;
+                  border-radius: 10px;
+                ">
+              <a style="color: #3e8da8; padding-bottom: 5px;" href="{% url 'homepost' user_uid=user_uid username=username %}">Sell Now</a>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="search-box">
+        <i class="bx bx-search"></i>
+        <div class="input-box">
+          <input type="text" placeholder="Search..." />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section style="width: 100%; margin-top: 100px">
+    <div style="
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+        ">
+      <div class="wrapper">
+        <div>
+          <h3>Promotions</h3>
+        </div>
+        <div class="scroll-container">
+          <img src="https://media.istockphoto.com/id/1591572504/photo/cheerful-businesswomen-shaking-hands-in-meeting-room.jpg?s=1024x1024&w=is&k=20&c=GYtKvPPbShP3JOyGRZdlakcQE2_h0skl6g6bU0r83qk="/>
+        </div>
+      </div>
+    </div>
+
+    <div style="
+          margin-top: 20px;
+          position: relative;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+        ">
+      <h3 style="font-size: 20px;">Houses and Appartment for Rent</h3>
+    </div>
+
+    <section style="background-color: #eee;">
+      <div class="container py-5">
+        <div class="row">
+          {% for apt_data in appatArray %}
+          
+          <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+            <a href="{% url 'details' user_uid=user_uid username=username apt_Id=apt_data.apt_Id  %}">
+            <div class="card">
+              <div class="d-flex justify-content-between p-3">
+                <!--<p class="lead mb-0">Today's Combo Offer</p>-->
+                <!--<div
+                  class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                  style="width: 35px; height: 35px;">
+                  <p class="text-white mb-0 small">x4</p>
+                </div>-->
+              </div>
+              <img src="{{ apt_data.image_url }}"
+                class="card-img-top" alt="{{ apt_data.aptName }}" />
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                  <h6 class="mb-0">{{ apt_data.aptName }}</h6>
+                  <h6 class="text-dark mb-0">Tsh {{ apt_data.aptPrice }}</h6>
+                </div>
+                <div class="d-flex">
+                  <p class="small"><a href="#!" class="text-muted">{{ apt_data.description }}</a></p>
+                </div>
+    
+                <div class="d-flex justify-content-between mb-2">
+                  <p class="text-muted mb-0">{{ apt_data.region }}, <span class="fw-bold">{{ apt_data.streetName }}</span></p>
+                  <div class="ms-auto text-warning">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          </div>
+          {% endfor %}
+          
+          
+        </div>
+      </div>
+    </section>
+ 
+  </section>
+
+  <!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="my-1">
+
+  <!-- Footer -->
+  <footer
+          class="text-center text-lg-start text-white"
+          style="background-color: #1c2331"
+          >
+    <!-- Section: Social media -->
+    <section
+             class="d-flex justify-content-between p-4"
+             style="background-color: #6351ce"
+             >
+      <!-- Left -->
+      <div class="me-5">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section style="width: 100%;" class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 style="color: #fff" class="text-uppercase fw-bold">About Rent Apartment</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+                <p>Rent Apartment is your go-to platform for finding the perfect apartment. We connect tenants with landlords and offer a seamless experience to make renting stress-free.</p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 style="color: #fff" class="text-uppercase fw-bold">Quick Links</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+                <p>
+                  <a href="#!" class="text-white">My Account</a>
+                </p>
+            <p>
+              <a href="#!" class="text-white">About Us</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Contact Us</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">List Your Property</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Become an Affiliate</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">FAQs</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 style="color: #fff" class="text-uppercase fw-bold">Contact</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+                <p><i class="fas fa-home mr-3"></i> Dar es Salaam, Tanzania</p>
+                <p><i class="fas fa-envelope mr-3"></i> info@rentapartment.com</p>
+                <p><i class="fas fa-phone mr-3"></i> +255 762 456 789</p>
+               
+          </div>
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 style="color: #fff" class="text-uppercase fw-bold">Follow Us</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+               
+            <p>
+              <a href="https://www.facebook.com" class="text-white mr-3">
+                <i class="fa fa-facebook"></i> Facebook
+            </a>
+            </p>
+            <p>
+              <a href="https://www.twitter.com" class="text-white mr-3">
+                <i class="fa fa-twitter"></i> Twitter
+            </a>
+            </p>
+            <p>
+              <a href="https://www.instagram.com" class="text-white">
+                <i class="fa fa-instagram"></i> Instagram
+            </a>
+            </p>
+            
+          </div>
+          
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div
+         class="text-center p-3"
+         style="background-color: rgba(0, 0, 0, 0.2)"
+         >
+      © 2024 Copyright: Rent Appartment
+      <a class="text-white" href=""
+         >Designed and Maintained by Sokoni Team under Benh's Petrus</a
+        >
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+</div>
+<!-- End of .container -->
+  <script>
+    // search-box open close js code
+    let navbar = document.querySelector(".navbar");
+    let searchBox = document.querySelector(".search-box .bx-search");
+    // let searchBoxCancel = document.querySelector(".search-box .bx-x");
+
+    searchBox.addEventListener("click", () => {
+      navbar.classList.toggle("showInput");
+      if (navbar.classList.contains("showInput")) {
+        searchBox.classList.replace("bx-search", "bx-x");
+      } else {
+        searchBox.classList.replace("bx-x", "bx-search");
+      }
+    });
+
+    // sidebar open close js code
+    let navLinks = document.querySelector(".nav-links");
+    let menuOpenBtn = document.querySelector(".navbar .bx-menu");
+    let menuCloseBtn = document.querySelector(".nav-links .bx-x");
+    menuOpenBtn.onclick = function () {
+      navLinks.style.left = "0";
+    };
+    menuCloseBtn.onclick = function () {
+      navLinks.style.left = "-100%";
+    };
+
+    // sidebar submenu open close js code
+    let htmlcssArrow = document.querySelector(".htmlcss-arrow");
+    htmlcssArrow.onclick = function () {
+      navLinks.classList.toggle("show1");
+    };
+    let moreArrow = document.querySelector(".more-arrow");
+    moreArrow.onclick = function () {
+      navLinks.classList.toggle("show2");
+    };
+    let jsArrow = document.querySelector(".js-arrow");
+    jsArrow.onclick = function () {
+      navLinks.classList.toggle("show3");
+    };
+  </script>
+</body>
+
+</html>
